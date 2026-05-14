@@ -427,6 +427,7 @@ class CommandBar(QWidget):
 
 class JarvisDesktop(QWidget):
     """JARVIS Next-Gen Desktop OS Interface."""
+    command_submitted = pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
@@ -498,9 +499,14 @@ class JarvisDesktop(QWidget):
     def _on_command(self, cmd):
         print(f"[Command] {cmd}")
         self._conversation.add_message(cmd, False)
+        self.command_submitted.emit(cmd)
 
     def add_response(self, text: str):
         self._conversation.add_message(text, True)
 
+    def set_result(self, text: str):
+        self.add_response(text)
+
     def set_status(self, status: str):
-        pass
+        # We can display the status in the conversation or a dedicated status bar.
+        print(f"[Status] {status}")

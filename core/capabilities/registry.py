@@ -133,14 +133,20 @@ class CapabilityRegistry:
                 Capability.WIN32_COM, False, "win32gui not available"
             )
 
-        try:
-            from core.platform.windows.pycaw_impl import PYCAW_AVAILABLE
+        import sys
+        if sys.platform == "win32":
+            try:
+                from core.platform.windows.pycaw_impl import PYCAW_AVAILABLE
+                self._data.capabilities[Capability.PYCAW] = CapabilityInfo(
+                    Capability.PYCAW, PYCAW_AVAILABLE, "pycaw available" if PYCAW_AVAILABLE else "pycaw not installed"
+                )
+            except ImportError:
+                self._data.capabilities[Capability.PYCAW] = CapabilityInfo(
+                    Capability.PYCAW, False, "pycaw not installed"
+                )
+        else:
             self._data.capabilities[Capability.PYCAW] = CapabilityInfo(
-                Capability.PYCAW, PYCAW_AVAILABLE, "pycaw available" if PYCAW_AVAILABLE else "pycaw not installed"
-            )
-        except ImportError:
-            self._data.capabilities[Capability.PYCAW] = CapabilityInfo(
-                Capability.PYCAW, False, "pycaw not installed"
+                Capability.PYCAW, False, "pycaw not supported on this platform"
             )
 
         try:

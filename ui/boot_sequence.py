@@ -83,17 +83,17 @@ class CinematicBoot(QWidget):
 
         # ── Parallax particle layers ───────────────────────────────────────────
         self._layers = [
-            self._make_layer(W, H, 60, speed=0.4, size_rng=(1.0, 2.0), alpha_rng=(30, 80),  z=0.3),
-            self._make_layer(W, H, 40, speed=0.8, size_rng=(1.5, 3.0), alpha_rng=(60, 140), z=0.65),
-            self._make_layer(W, H, 20, speed=1.3, size_rng=(2.0, 4.5), alpha_rng=(100, 200),z=1.0),
+            self._make_layer(W, H, 15, speed=0.4, size_rng=(1.0, 2.0), alpha_rng=(30, 80),  z=0.3),
+            self._make_layer(W, H, 10, speed=0.8, size_rng=(1.5, 3.0), alpha_rng=(60, 140), z=0.65),
+            self._make_layer(W, H,  5, speed=1.3, size_rng=(2.0, 4.5), alpha_rng=(100, 200),z=1.0),
         ]
 
         # ── Falling binary streams ─────────────────────────────────────────────
         self._streams = [
             {"x": random.randint(0, W), "y": random.randint(-H, 0),
              "speed": random.uniform(4, 12),
-             "chars": [random.choice("01X#@|&%") for _ in range(25)]}
-            for _ in range(80)
+             "chars": [random.choice("01X#@|&%") for _ in range(10)]}
+            for _ in range(20)
         ]
 
         # ── Rotating rings ─────────────────────────────────────────────────────
@@ -317,8 +317,6 @@ class CinematicBoot(QWidget):
         # Glitch offset
         gx = self._glitch_dx if self._glitch_t > 0 else 0
         gy = self._glitch_dy if self._glitch_t > 0 else 0
-        if self._glitch_t > 0 and random.random() < 0.35:
-            p.setCompositionMode(QPainter.CompositionMode.CompositionMode_Exclusion)
 
         p.save(); p.translate(cx + gx, cy_globe + gy)
 
@@ -481,7 +479,7 @@ class CinematicBoot(QWidget):
 
     def _draw_grid(self, p, W, H):
         p.setPen(QPen(QColor(249,115,22,14),1))
-        sp  = 95
+        sp  = 180
         off = (self._t * 20) % sp
         for x in range(int(-sp+off), W+sp, sp): p.drawLine(x,0,x,H)
         for y in range(int(-sp+off), H+sp, sp): p.drawLine(0,y,W,y)

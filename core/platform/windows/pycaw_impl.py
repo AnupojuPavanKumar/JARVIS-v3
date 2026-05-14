@@ -24,8 +24,12 @@ except ImportError:
 try:
     from ctypes import wintypes
     import ctypes
-    kernel32 = ctypes.windll.kernel32
-    _win32_core_audio_available = True
+    import sys
+    if sys.platform == "win32":
+        kernel32 = ctypes.windll.kernel32
+        _win32_core_audio_available = True
+    else:
+        _win32_core_audio_available = False
 except ImportError:
     pass
 
