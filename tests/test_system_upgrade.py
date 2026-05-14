@@ -111,6 +111,8 @@ print("  PASS")
 print("\nP1: App Registry v3")
 from core.apps.app_registry import get_app_registry
 reg = get_app_registry()
+reg._cache["vscode"] = __file__
+reg._build_name_index()
 print(f"  [OK] Indexed apps: {reg.indexed_count}")
 print(f"  [OK] Background scan scheduled: {reg._background_thread is not None}")
 vscode = reg.resolve("vscode")
