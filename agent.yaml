@@ -1,0 +1,54 @@
+name: JARVIS-v3-Sovereign-Orchestrator
+version: "3.0.0"
+description: >
+  Hierarchical Multi-Agent Cluster for JARVIS-v3.
+  Features Architect (planning), Execution (coding), and Security (VibeShield) sub-agents.
+
+agents:
+  - id: lead_orchestrator
+    role: Lead Agent
+    description: Manages task routing, state, and delegation between sub-agents.
+    model: deepseek-r1:7b
+    tools: ["delegate", "monitor_vram"]
+    
+  - id: architect_subagent
+    role: Architect Sub-Agent
+    description: Uses deepseek-r1:7b logic for architectural planning and project scaffolding strategy.
+    model: deepseek-r1:7b
+    tools: ["read_file", "list_dir", "map_structure"]
+
+  - id: execution_subagent
+    role: Execution Sub-Agent
+    description: Uses qwen2.5-coder:7b for rapid code generation and hyper-execution.
+    model: qwen2.5-coder:7b
+    tools: ["write_file", "replace_in_file", "python_sandbox", "shell_safe"]
+
+  - id: security_auditor
+    role: Security Auditor (VibeShield)
+    description: Mandatory CoVe judge that validates execution outputs against ground truth using a 4-rule rubric.
+    model: gemma2:2b
+    tools: ["audit_claim", "trigger_correction_loop"]
+
+security_policies:
+  terminal_sandboxing: true
+  max_correction_loops: 3
+  vram_guardian: enabled
+
+# ── VRAM Budget & Model Strategy (Phase D) ────────────────────────────────────
+# Declare hardware constraints so VRAMOrchestrator can make optimal prefetch
+# decisions without querying nvidia-smi on every command.
+vram_strategy:
+  budget_gb: 8                      # target hardware VRAM ceiling (GB)
+  eviction_threshold_pct: 75        # evict models when usage exceeds this %
+  # Priority order for proactive prefetching.
+  # When a heavy task intent is detected, the first matching model is loaded.
+  prefetch_priority:
+    - intent: WEB_RESEARCH
+      model: qwen2.5-coder:7b       # fast executor for research synthesis
+    - intent: AGENT_TASK
+      model: deepseek-r1:7b         # reasoning model for multi-step planning
+    - intent: SECURITY_AUDIT
+      model: gemma2:2b              # lightweight auditor, lowest VRAM cost
+  # Strategy: load the smallest model that satisfies each intent.
+  # This keeps VRAM peak below budget_gb on 6-8 GB consumer GPUs.
+  eviction_strategy: lru            # least-recently-used eviction order

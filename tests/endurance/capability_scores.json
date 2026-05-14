@@ -1,0 +1,34 @@
+{
+    "coding": {
+        "attempts": 50,
+        "success": 50,
+        "retries": 0,
+        "syntax_validity_pct": 100.0,
+        "success_rate": 100.0,
+        "retry_frequency": 0.0
+    },
+    "debugging": {
+        "attempts": 20,
+        "success": 0,
+        "rollback_freq": 0
+    },
+    "planning": {
+        "attempts": 50,
+        "invalid_plan_freq": 0
+    },
+    "recovery": {
+        "attempts": 70,
+        "continuation_success_pct": 28.57,
+        "cascading_survival_pct": 54.29,
+        "cascading_survival_rate": 77.56
+    },
+    "tool_usage": {
+        "attempts": 120,
+        "valid_selection_pct": 97.5,
+        "hallucinations": 3,
+        "hallucination_rate": 2.5
+    },
+    "probabilistic_drift": {
+        "variance_score": 0.04124918599960321
+    }
+}

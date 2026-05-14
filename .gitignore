@@ -1,0 +1,92 @@
+# ── Python ────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+
+# ── Virtual environments ──────────────────────────
+venv*/
+.venv/
+env/
+ENV/
+.env
+
+# ── AI Models (large binary files) ───────────────
+vosk-model*/
+*.pth
+*.bin
+*.gguf
+*.safetensors
+*.onnx
+memory/kokoro/
+
+# ── Sensitive / runtime files ─────────────────────
+*.db
+*.sqlite
+*.sqlite3
+memory/screenshot_*.png
+memory/screen_capture.png
+memory/temp_action.py
+memory/agent_log.jsonl
+memory/activity.log
+memory/*.log
+memory/conversations.json
+memory/commands.json
+memory/reminders.json
+memory/app_index.json
+memory/face_samples/
+memory/face_model.yml
+memory/jarvis_voice_ref*.wav
+*-shm
+*-wal
+scratch/
+generated/
+memory/checkpoints/
+memory/cognitive_context.json
+memory/cognitive_narratives.json
+memory/domain_trust.json
+memory/fatigue_model.json
+memory/l1_narratives.json
+memory/l2_operational.json
+memory/l3_detail.json
+memory/l4_raw.json
+memory/proactive_patterns.json
+memory/trust_model.json
+memory/app_registry.json
+memory/app_registry_v2.json
+memory/behavior_baseline.json
+# ── Secrets ───────────────────────────────────────
+*.key
+*.pem
+*.env
+.env*
+config/secrets.json
+biometric_bridge/ntfy_config.json
+memory/api_token.txt
+memory/auth_config.json
+
+# ── OS / Editor noise ─────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Logs ──────────────────────────────────────────
+*.log
+logs/
+
+# ── Temp / build ──────────────────────────────────
+tmp/
+temp/
+*.tmp
+*.bak

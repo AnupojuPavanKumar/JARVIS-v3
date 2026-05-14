@@ -1,0 +1,22 @@
+{
+    "timestamp": 1778317239.4007208,
+    "performance": {
+        "startup_time_sec": 2.05,
+        "chat_latency_sec": 2.06,
+        "status_latency_sec": 10.73
+    },
+    "resources": {
+        "peak_vram_pct": 12.7,
+        "ram_pct": 55.4,
+        "thread_count": 7
+    },
+    "reliability": {
+        "hallucinated_tool_frequency": "0.0%",
+        "recovery_success": "98.5%",
+        "dag_consistency": "100.0%"
+    },
+    "capability": {
+        "coding_task_success": "Pass",
+        "recovery_task_success": "Pass"
+    }
+}

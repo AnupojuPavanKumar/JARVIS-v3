@@ -1,0 +1,16 @@
+{
+    "city": "Hyderabad",
+    "briefing_time": "09:00",
+    "timezone": "Asia/Kolkata",
+    "ntfy_topic": "jarvis",
+    "model_code": "qwen2.5-coder:7b",
+    "model_chat": "llama3.2:3b",
+    "model_plan": "deepseek-r1:1.5b",
+    "pattern_similarity_threshold": 0.82,
+    "wake_word": "hey jarvis",
+    "tts_voice": "bm_george",
+    "twilio_sid": "AC_YOUR_ACCOUNT_SID",
+    "twilio_token": "YOUR_AUTH_TOKEN",
+    "twilio_from": "+1234567890",
+    "version": 3
+}
