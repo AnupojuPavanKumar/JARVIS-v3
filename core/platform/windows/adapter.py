@@ -37,9 +37,15 @@ PROCESS_VM_READ = 0x0010
 TH32CS_SNAPPROCESS = 0x00000002
 
 # ── ctypes Setup ───────────────────────────────────────────────────────────────
-kernel32 = ctypes.windll.kernel32
-user32 = ctypes.windll.user32
-psapi = ctypes.windll.psapi
+import sys
+if sys.platform == "win32":
+    kernel32 = ctypes.windll.kernel32
+    user32 = ctypes.windll.user32
+    psapi = ctypes.windll.psapi
+else:
+    kernel32 = None
+    user32 = None
+    psapi = None
 
 # ── GPU Info via PowerShell ─────────────────────────────────────────────────────
 def _get_gpu_info() -> dict:
